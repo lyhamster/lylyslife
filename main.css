@@ -1,0 +1,64 @@
+body{
+    margin : 0; 
+    display: flex;
+    flex-direction: column;
+    background: pink;
+    height: 100vh;
+    width: 100vw;
+}
+
+header, footer{
+    display: flex;
+    flex-basis:100%;
+    justify-content: center;
+    flex-grow: 1;
+    background-color: purple;
+}
+
+.boxLogo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position:relative;
+}
+
+.logo{
+    z-index : 0;
+}
+.rightbubbleBox, .leftbubbleBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: relative ;
+}
+
+.leftbubbleBox{
+    justify-content: flex-start;
+}
+
+.mainBubble{
+    width: max-content;
+    position: absolute;
+    bottom:0px;
+}
+
+.layeredBubble{
+    position: absolute;
+    top : -17px;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+}
+
+.screen{
+    width: 230px;
+    height:230px;
+    background-color: green;
+}
+
+.arriere-plan{
+    width:50px;
+    height:50px;
+}
