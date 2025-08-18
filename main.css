@@ -109,6 +109,7 @@ main{
 
 .imgChest{
     height: 100%;
+    position:relative;
 }
 
 .overallWrapper{
