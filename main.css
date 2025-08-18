@@ -1,10 +1,31 @@
+:root {
+    --purple-600: #381C45;
+    --purple-500: #442652;
+    --purple-400: #4C285C;
+    --purple-300: #5B396C;
+    --purple-200: #674379;
+    --purple-100: #9B7BAA;
+    --pink-700: #C19AD3;
+    --pink-600: #D398E8;
+    --pink-500: #D59DEA;
+    --pink-400: #D4ABE6;
+    --pink-300: #E1B7F1;
+    --pink-200: #EAB0FF;
+    --pink-100: #EBBFFB;
+    --dark-blue:  #434370;
+    --screen-size : 230;
+    --sprite-size: 32;
+}
+
 body{
     margin : 0; 
     display: flex;
     flex-direction: column;
-    background: pink;
     height: 100vh;
     width: 100vw;
+    background-image: url("Frame\ 1.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 header, footer{
@@ -12,7 +33,10 @@ header, footer{
     flex-basis:100%;
     justify-content: center;
     flex-grow: 1;
-    background-color: purple;
+}
+
+header{
+    background-color: #434370;
 }
 
 .boxLogo{
@@ -25,6 +49,7 @@ header, footer{
 .logo{
     z-index : 0;
 }
+
 .rightbubbleBox, .leftbubbleBox{
     display: flex;
     flex-direction: row;
@@ -49,16 +74,65 @@ header, footer{
 
 main{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .screen{
-    width: 230px;
-    height:230px;
-    background-color: green;
+    display:flex;
+    height:calc(1px * var(--screen-size));
+    width: calc(1px * var(--screen-size));
+    overflow: hidden;
+    position:relative;
 }
 
+.borderButton{
+    border-image-source: url("menu-button.png");
+}
+
+.imgBg{
+    height:100%;
+    image-rendering: pixelated;
+    position: relative;
+    right:250px;
+}
+
+.chestWrapper,.limbsWrapper {
+    top:42px;
+}
+
+.imgLimbs{
+    position: relative;
+    transform: scale(calc(var(--screen-size) / var(--sprite-size)));
+    transform-origin: top left;
+}
+
+.imgChest{
+    height: 100%;
+    position:relative;
+}
+
+.overallWrapper{
+    height:calc(1px * var(--screen-size));
+    width: calc(1px * var(--screen-size));
+    position: absolute;
+}
+
+.spriteWrapper{
+    height:100%;
+    width: 100%;
+    position: absolute;
+    transform:scale(0.6);
+    overflow: hidden;
+    image-rendering: pixelated;
+}
+
+.imgFace{
+    position: relative;
+    transform-origin: top left;
+    transform: scale(calc(var(--screen-size) / var(--sprite-size)))
+}
 .arriere-plan{
     width:50px;
     height:50px;
-}
+}   
