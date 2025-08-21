@@ -1,4 +1,5 @@
 const EMOTIONS = {
+
     rest: [1000, 200],
     angry: [500, 500],
     cheerful : [1000, 200, 400, 400, 400],
@@ -11,19 +12,22 @@ const EMOTIONS = {
     sport:[800, 500, 300, 300, 800],
     cry: [1200, 300, 300, 300, 300, 300],
     "mental effort": [ 1200, 300, 300, 300, 300],
+
 }
 
-const LIMBS = [
-    "walk",
-    "sit",
-    "stand up",
-    "typing",
-    "sport",
-    "dance",
-    "fuck",
-    "celebrate",
-    "thumb down",
-]
+const LIMBS = {
+
+    walk:[700, 700],
+    sit: [100],
+    "stand up": [100],
+    typing: [800, 300, 500],
+    sport: [600, 900, 600, 900],
+    dance: [600, 900, 600, 1200],
+    fuck: [600, 1500,],
+    celebrate: [600, 500, 500, 600],
+    "thumb down": [600, 500, 500, 600],
+
+}
 
 function changeBodypart(arr,feature,imgClass){
     
@@ -61,43 +65,71 @@ function changeChest(outfit){
 }
 
 /*
-    function animation
-    il faut passer d'une image a droite a une autre meme principe que change face
-    selectionner l'emotion
-    premiere image s execute 
-    timeout s execute
-    il faut stocker l information pour incrementer la position
-    question de boucle ou des que ca atteint un certain il faut recommencer du debut
+Maintenant, il faut que tu geres le cas ou quand tu rappeles le faceMotion, il faut que ca annule l'ancienne boucle
 
-    selection du visage 
+    il faut que ca annule l'ancienne boucle                                                                                                                                                                                                                                                                                                                                                                                        
+    dans la fonction declencheur il faut mettre condition pour pouvoir 
 
 */ 
 
-let initFrame =0
+let initfaceFrame =0
+let initlimbsFrame=0;
+let facesetTimeout;
+let limbsTimeout;
 
-function repeatfaceMotion(emotion){
+function repeatfaceMotion(arr,action,imgClass){
     
-    document.querySelector(".imgFace").style.left= initFrame * -230 +"px"
+    document.querySelector(imgClass).style.left= initfaceFrame * -230 +"px"
     
-    setTimeout(() => {
+    facesetTimeout = setTimeout(() => {
         
-        if( initFrame >= EMOTIONS[emotion].length -1){
-            initFrame = 0
+        if( initfaceFrame >= arr[action].length -1){
+            initfaceFrame = 0
         } else {
-            initFrame++
+            initfaceFrame++
         }
 
-        repeatfaceMotion(emotion) 
+        repeatfaceMotion(arr,action,imgClass) 
 
-    }, EMOTIONS[emotion][initFrame]);
-
-    
+    }, arr[action][initfaceFrame]);
 
 }
 
-function faceMotion(emotion){
-    changeFace(emotion)
-    repeatfaceMotion(emotion);
-
+function repeatlimbsMotion(arr,action,imgClass){
     
+    document.querySelector(imgClass).style.left= initlimbsFrame * -230 +"px"
+    
+    limbsTimeout = setTimeout(() => {
+        
+        if( initlimbsFrame >= arr[action].length -1){
+            initlimbsFrame = 0
+        } else {
+            initlimbsFrame++
+        }
+
+        repeatlimbsMotion(arr,action,imgClass) 
+
+    }, arr[action][initlimbsFrame]);
+
 }
+
+function faceMotion(action){
+    changeFace(action)
+    clearTimeout(facesetTimeout);
+    repeatfaceMotion(EMOTIONS,action,".imgFace");
+}
+
+function limbsMotion(action){
+    changeLimbs(action);
+    clearTimeout(limbsTimeout);
+    repeatlimbsMotion(LIMBS,action,".imgLimbs");
+}
+
+//dans ton JS, je veux que tu creer des boutons automatiquement pour chaque emotion possible
+/* entre autre pour chnaque emotion il va falloir creer un bouton (via js) qui a le nom de l'emotion*/
+
+const faceBtn = document.querySelector(".faceButtons")
+const p = document.createElement("button");
+p.textContent= "prout"
+faceBtn.appendChild(p)
+
