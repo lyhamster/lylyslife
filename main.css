@@ -91,7 +91,6 @@ main{
 }
 
 .imgBg{
-    height:100%;
     image-rendering: pixelated;
     position: relative;
     right:250px;
@@ -137,16 +136,15 @@ main{
     height:50px;
 }   
 
-.faceButtons button, .limbButtons button {
+.faceButtons button, .limbButtons button, .chestButtons button{
     border:solid white;
     border-radius: 5px;
     background-color: white;
     padding: 1px;
     font-family: Monospace;
-    
 }
 
-.faceButtons,.limbButtons{
+.faceButtons,.limbButtons, .chestButtons{
     display: flex;
     flex-direction: row;
     gap: 4px;

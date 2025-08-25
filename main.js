@@ -14,18 +14,17 @@ const FACE_FRAMES = {
     "mental effort": [ 1200, 300, 300, 300, 300],
 }
 
-const LIMBS_FRAMES = {
-
+const LIMBS_FRAMES = {  
+    
+    "stand up": [100],
     walk:[700, 700],
     sit: [100],
-    "stand up": [100],
     typing: [800, 300, 500],
     sport: [600, 900, 600, 900],
     dance: [600, 900, 600, 1200],
     fuck: [600, 1500,],
     celebrate: [600, 500, 500, 600],
     "thumb down": [600, 500, 500, 600],
-
 }
 
 function changeBodypart(arr,feature,imgClass){
@@ -50,11 +49,11 @@ const CHEST_FRAME =[
     "puffer",
     "bra",
     "military",
-    "sport",
-    "pattern",
+    "hoddie",
     "party",
-    "classy",
-    "butterfly",
+    "swimming top",
+    "crop top",
+    "flanel",
 ]
 
 function changeChest(outfit){
@@ -166,7 +165,7 @@ function chestButtons(){
         bttn.textContent = property 
         
         bttn.addEventListener("click",()=>{
-           changeChest(property) 
+           changeChest(property)
         })
         
         chestBttn.appendChild(bttn)
@@ -174,3 +173,23 @@ function chestButtons(){
 }
 
 chestButtons()
+
+/* 
+faire une fonction qui permet d'attendre le temps donner, par exemple :
+await delay(1000) // attends une seconde avant la prochaine ligne
+tu vas devoir faire une "fausse" promise qui va permettre d'attendre selon le temps donner
+une fois que ca c'ést fait on verra la suite
+*/
+
+function awaitDelay(time){
+    return new Promise((resolve) => {
+    setTimeout(() =>  resolve()
+     ,time)})
+}
+
+async function scene () {
+    faceMotion("");
+    await awaitDelay()
+    faceMotion("")
+}
+
