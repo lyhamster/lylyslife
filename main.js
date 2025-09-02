@@ -16,15 +16,15 @@ const FACE_FRAMES = {
 
 const LIMBS_FRAMES = {  
     
-    "stand up": [100],
-    walk:[700, 700],
+    walking: [700, 700],
     sit: [100],
+    neutral: [100],
     typing: [800, 300, 500],
     sport: [600, 900, 600, 900],
     dance: [600, 900, 600, 1200],
     fuck: [600, 1500,],
-    celebrate: [600, 500, 500, 600],
-    "thumb down": [600, 500, 500, 600],
+    fiesta: [600, 500, 500, 600],
+    kill: [600, 500, 500, 600],
 }
 
 function changeBodypart(arr,feature,imgClass){
@@ -174,12 +174,6 @@ function chestButtons(){
 
 chestButtons()
 
-/* 
-faire une fonction qui permet d'attendre le temps donner, par exemple :
-await delay(1000) // attends une seconde avant la prochaine ligne
-tu vas devoir faire une "fausse" promise qui va permettre d'attendre selon le temps donner
-une fois que ca c'ést fait on verra la suite
-*/
 
 function awaitDelay(time){
     return new Promise((resolve) => {
@@ -191,5 +185,51 @@ async function scene () {
     faceMotion("");
     await awaitDelay()
     faceMotion("")
+}
+
+
+/*
+prochaine etape, c' est faire une fonction qui va accepter en argument une sceneData
+cet argument sera toujours :
+un array
+ou chaque ligne du tableau sera un deuxieme array
+ce deuxieme array, sera composer de 2 elements : les modifications a faire, le temps d'attente avant la prochaine ligne
+
+laFonction([
+   [changement de tete en sport + changement de limbs en sport, 2000],
+   [changement de tete en happy + changement de limbs en fiesta, 3000],
+   [changement de tete en neutral+ changement de limbs en neutral, 0],
+])
+
+*/
+
+const testData = [
+    ["sport", "sport",2000], 
+    ["playful", "fiesta",3000],
+    ["rest face", "fiesta",5000], 
+    ["butterfly", "fuck",0], 
+    ];
+
+const cegrosDebiledeDydy =[
+    ["sleeping","sit",3000],
+    ["shocked","neutral",2000],
+    ["rest face","walking",4000],
+    ["mental effort", "typing",0],
+]
+
+async function spriteSceneDelay(sceneData,instructionNumber=0){
+  
+    const sceneInstruction= sceneData[instructionNumber]
+
+    const [faceInstruction,limbsInstruction,timeInstruction] =  sceneInstruction;
+
+    faceMotion(faceInstruction); 
+    limbsMotion(limbsInstruction);
+
+    await awaitDelay(timeInstruction);
+    if(instructionNumber>= sceneData.length-1){
+        return 
+    }
+    spriteSceneDelay(sceneData,instructionNumber+1); 
 }
 

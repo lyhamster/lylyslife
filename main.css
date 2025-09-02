@@ -86,14 +86,21 @@ main{
     position:relative;
 }
 
+.currentRoom, .transitionRoom, .newRoom {
+    overflow: hidden;
+    flex-shrink:0;
+    width:100%
+}
+
+
 .borderButton{
     border-image-source: url("menu-button.png");
 }
 
-.imgBg{
+.currentimgBg, .nextimgBg{
     image-rendering: pixelated;
-    position: relative;
-    right:250px;
+    transform: scale(calc(var(--screen-size) / var(--sprite-size)));
+    transform-origin: top left;
 }
 
 .chestWrapper,.limbsWrapper {
