@@ -174,7 +174,6 @@ function chestButtons(){
 
 chestButtons()
 
-
 function awaitDelay(time){
     return new Promise((resolve) => {
     setTimeout(() =>  resolve()
@@ -186,22 +185,6 @@ async function scene () {
     await awaitDelay()
     faceMotion("")
 }
-
-
-/*
-prochaine etape, c' est faire une fonction qui va accepter en argument une sceneData
-cet argument sera toujours :
-un array
-ou chaque ligne du tableau sera un deuxieme array
-ce deuxieme array, sera composer de 2 elements : les modifications a faire, le temps d'attente avant la prochaine ligne
-
-laFonction([
-   [changement de tete en sport + changement de limbs en sport, 2000],
-   [changement de tete en happy + changement de limbs en fiesta, 3000],
-   [changement de tete en neutral+ changement de limbs en neutral, 0],
-])
-
-*/
 
 const testData = [
     ["sport", "sport",2000], 
@@ -233,3 +216,43 @@ async function spriteSceneDelay(sceneData,instructionNumber=0){
     spriteSceneDelay(sceneData,instructionNumber+1); 
 }
 
+
+class Background {
+
+    ROOMS = [
+        "living-room",
+        "gym",
+        "dressing",
+        "library",
+        "aquarium",
+        "pet",
+        "vending",
+        "closed",
+        "transition",
+    ];
+
+    constructor(img){
+        this.img= img;
+    };
+
+    unit = -299.99;
+    
+    changeRoom(area){
+    let roomIndex = this.ROOMS.indexOf(area)
+
+    document.querySelector(this.img).style.marginLeft = `${roomIndex * this.unit}px`;
+};
+    
+};
+
+const currentRoom = new Background(".currentimgBg");
+const transitionRoom = new Background(".transitionimgBg");
+const nextRoom = new Background(".newroomimgBg");
+
+function movetoRoom(area){
+    
+    nextRoom.changeRoom(area)
+    
+    const addtransitionClass= document.querySelector(".currentRoom")
+    addtransitionClass.classList.add("movedBackground")
+};
