@@ -61,7 +61,6 @@ function changeChest(outfit){
     document.querySelector(".imgChest").style.left=`${chestIndex * -230 +"px"}`;
 }
 
-
 let initfaceFrame =0;
 let initlimbsFrame=0;
 let facesetTimeout;
@@ -82,8 +81,7 @@ function repeatfaceMotion(arr,action,imgClass){
         repeatfaceMotion(arr,action,imgClass);
 
     }, arr[action][initfaceFrame]);
-
-}
+};
 
 function repeatlimbsMotion(arr,action,imgClass){
     
@@ -100,20 +98,19 @@ function repeatlimbsMotion(arr,action,imgClass){
         repeatlimbsMotion(arr,action,imgClass);
 
     }, arr[action][initlimbsFrame]);
-
-}
+};
 
 function faceMotion(action){
     changeFace(action);
     clearTimeout(facesetTimeout);
     repeatfaceMotion(FACE_FRAMES,action,".imgFace");
-}
+};
 
 function limbsMotion(action){
     changeLimbs(action);
     clearTimeout(limbsTimeout);
     repeatlimbsMotion(LIMBS_FRAMES,action,".imgLimbs");
-}
+};
 
 function faceButton (){
     
@@ -132,8 +129,7 @@ function faceButton (){
         faceBttns.appendChild(bttn)
 
     })
-
-}
+};
 
 faceButton()
 
@@ -187,10 +183,10 @@ async function scene () {
 }
 
 const testData = [
-    ["sport", "sport",2000], 
-    ["playful", "fiesta",3000],
-    ["rest face", "fiesta",5000], 
-    ["butterfly", "fuck",0], 
+    ["sport", "sport",null,2000], 
+    ["playful", "fiesta","living-room",3000],
+    ["rest face", "fiesta",null,5000], 
+    ["butterfly", "fuck",null,0], 
     ];
 
 const cegrosDebiledeDydy =[
@@ -198,24 +194,28 @@ const cegrosDebiledeDydy =[
     ["shocked","neutral",2000],
     ["rest face","walking",4000],
     ["mental effort", "typing",0],
-]
+];
 
-async function spriteSceneDelay(sceneData,instructionNumber=0){
+async function spriteSceneDelay(sceneData,instructionNumber=0,){
   
     const sceneInstruction= sceneData[instructionNumber]
 
-    const [faceInstruction,limbsInstruction,timeInstruction] =  sceneInstruction;
+    const [faceInstruction,limbsInstruction,backgroundInstruction,timeInstruction] =  sceneInstruction;
 
     faceMotion(faceInstruction); 
     limbsMotion(limbsInstruction);
+    if(backgroundInstruction) {
+        movetoRoom(backgroundInstruction)
+    } 
+   
 
     await awaitDelay(timeInstruction);
     if(instructionNumber>= sceneData.length-1){
         return 
     }
-    spriteSceneDelay(sceneData,instructionNumber+1); 
-}
 
+    spriteSceneDelay(sceneData,instructionNumber+1); 
+};
 
 class Background {
 
@@ -242,7 +242,6 @@ class Background {
 
     document.querySelector(this.img).style.marginLeft = `${roomIndex * this.unit}px`;
 };
-    
 };
 
 const currentRoom = new Background(".currentimgBg");
@@ -255,4 +254,6 @@ function movetoRoom(area){
     
     const addtransitionClass= document.querySelector(".currentRoom")
     addtransitionClass.classList.add("movedBackground")
+
+
 };
