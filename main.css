@@ -118,6 +118,7 @@ main{
 .currentimgBg,.transitionimgBg, .newroomimgBg{
     image-rendering: pixelated;
     transform: scale(calc(var(--screen-size) / var(--sprite-size)));
+    position:absolute;
     transform-origin: top left;
     flex-shrink:0;
 }

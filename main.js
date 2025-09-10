@@ -1,21 +1,5 @@
+import AnimatedSprite from "./classAnimatedSprite";
 import Sprite from "./classSprite";
-
-const CHEST_FRAME =[
-    "basic", 
-    "puffer",
-    "bra",
-    "military",
-    "hoddie",
-    "party",
-    "swimming top",
-    "crop top",
-    "flanel",
-]
-
-function changeChest(outfit){
-    let chestIndex = CHEST_FRAME.indexOf(outfit);
-    document.querySelector(".imgChest").style.left=`${chestIndex * -230 +"px"}`;
-}
 
 function awaitDelay(time){
     return new Promise((resolve) => {
@@ -56,9 +40,7 @@ async function spriteSceneDelay(sceneData,instructionNumber=0,){
     spriteSceneDelay(sceneData,instructionNumber+1); 
 };
 
-class Background {
-
-    ROOMS = [
+window.currentRoom = new Sprite( [
         "living-room",
         "gym",
         "dressing",
@@ -68,24 +50,10 @@ class Background {
         "vending",
         "closed",
         "transition",
-    ];
+    ],".currentimgBg");
 
-    constructor(img){
-        this.img= img;
-    };
-
-    unit = -299.99;
-    
-    changeRoom(area){
-    let roomIndex = this.ROOMS.indexOf(area)
-
-    document.querySelector(this.img).style.marginLeft = `${roomIndex * this.unit}px`;
-};
-};
-
-const currentRoom = new Background(".currentimgBg");
-const transitionRoom = new Background(".transitionimgBg");
-const nextRoom = new Background(".newroomimgBg");
+window.transitionRoom = window.currentRoom.clone(".transitionimgBg");
+window.nextRoom = window.currentRoom.clone(".newroomimgBg");
 
 function movetoRoom(area){
     
@@ -94,7 +62,7 @@ function movetoRoom(area){
     const addtransitionClass= document.querySelector(".currentRoom")
     addtransitionClass.classList.add("movedBackground")
 };
-window.limbsSprite = new Sprite ( 
+window.limbsSprite = new AnimatedSprite( 
         {walking: [700, 700],
         sit: [100],
         neutral: [100],
@@ -106,7 +74,7 @@ window.limbsSprite = new Sprite (
         kill: [600, 500, 500, 600]}, 
         ".imgLimbs")
 
-window.faceSprite = new Sprite({
+window.faceSprite = new AnimatedSprite({
     "rest face": [1000, 200],
     angry: [500, 500],
     playful : [1000, 200, 400, 400, 400],
@@ -122,6 +90,16 @@ window.faceSprite = new Sprite({
     ".imgFace"
 )
 
+window.chestSprite = new Sprite([
+    "basic", 
+    "puffer",
+    "bra",
+    "military",
+    "hoddie",
+    "party",
+    "swimming top",
+    "crop top",
+    "flanel",],".imgChest")
 
-
+window.faceSprite.addButtons()
 

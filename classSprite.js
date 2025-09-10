@@ -1,58 +1,45 @@
 
 export default class Sprite {
-    frames;
+    elements;
     selector;
     unit = -230
-    currentAction;
-    initFrame=0;
-    timeOut;
+    currentSprite;
     divButton=".ButtonsBox"
 
-    constructor(frames, selector){
+    constructor(elements, selector){
         this.selector= selector;
-        this.frames=frames;
+        this.elements=elements;
     }
 
-    addMotions(action){
-        this.currentAction= action;
+    setAction(state){
+        this.currentSprite= state;
         this._changeSprite();
-        
-        clearTimeout(this.timeOut);
-        this._repeatSpriteMotion();
     };
+
+    clone(selector){
+        return new Sprite(
+            this.elements,selector
+        )
+    }
 
     addButtons(){
         const spriteBttn = document.querySelector(this.divButton);
         const addchildDiv = document.createElement("div")
-        const spriteArr = Object.keys(this.frames)
+        const spriteArr = Object.keys(this.elements)
         spriteArr.forEach((property) => {
             let bttn = document.createElement("button")
             bttn.textContent = property 
             bttn.addEventListener("click",()=>{
-                this.addMotions(property) 
+                this.setAction(property) 
             })
-            addchildDiv.appendChild(bttn)
+            addchildDiv.appendChild(bttn) 
         });
         spriteBttn.appendChild(addchildDiv);
     }
 
-    _repeatSpriteMotion(){
-        document.querySelector(this.selector).style.left= this.initFrame * this.unit+"px";
-        
-        this.timeOut = setTimeout(() => {
-            if( this.initFrame >= this.frames[this.currentAction].length -1){
-                this.initFrame = 0
-            } else {
-                this.initFrame++
-            }
-
-            this._repeatSpriteMotion();
-        }, this.frames[this.currentAction][this.initFrame]);
-    }
-
     _changeSprite() {
-        let spriteIndex=Object.keys(this.frames).indexOf(this.currentAction)
-        document.querySelector(this.selector).style.top=`${spriteIndex*this.unit}px`
+        let spriteIndex=this.elements.indexOf(this.currentSprite)
+        document.querySelector(this.selector).style.left=`${spriteIndex*this.unit}px`
     }
 }
 
