@@ -1,5 +1,5 @@
-import AnimatedSprite from "./classAnimatedSprite";
-import Sprite from "./classSprite";
+import AnimatedSprite from "./src/classes/AnimatedSprite";
+import Sprite from "./src/classes/Sprite";
 
 function awaitDelay(time) {
     return new Promise(

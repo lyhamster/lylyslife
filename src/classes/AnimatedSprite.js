@@ -1,5 +1,5 @@
-import Sprite from "./classSprite";
-export default class  AnimatedSprite extends Sprite {
+import Sprite from "./Sprite";
+export default class AnimatedSprite extends Sprite {
     
     initFrame=0;
     timeOut;
