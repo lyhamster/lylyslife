@@ -1,103 +1,115 @@
-const EMOTIONS = {
-    rest: [1000, 200],
-    angry: [500, 500],
-    cheerful : [1000, 200, 400, 400, 400],
-    read: [1000, 200, 100, 900],
-    sleep: [500, 500, 500, 500],
-    bewildered: [700, 700, 700],
-    bored: [1000, 700],
-    butterfly:[1200, 300, 300, 300, 300, 4300],
-    shock: [500, 500],
-    sport:[800, 500, 300, 300, 800],
-    cry: [1200, 300, 300, 300, 300, 300],
-    "mental effort": [ 1200, 300, 300, 300, 300],
+import AnimatedSprite from "./classAnimatedSprite";
+import Sprite from "./classSprite";
+
+function awaitDelay(time) {
+    return new Promise(
+        (resolve) => setTimeout(
+            () =>  resolve(),
+            time,
+        )
+    )
 }
 
-const LIMBS = [
-    "walk",
-    "sit",
-    "stand up",
-    "typing",
-    "sport",
-    "dance",
-    "fuck",
-    "celebrate",
-    "thumb down",
-]
+async function scene () {
+    faceMotion("");
+    await awaitDelay();
+    faceMotion("");
+};
 
-function changeBodypart(arr,feature,imgClass){
-    
-    let bodyIndex = Object.keys(arr).indexOf(feature);
-    const unite = -230
+const testData = [
+    ['sport', 'sport', null, 2000], 
+    ['playful', 'fiesta', 'living-room', 3000],
+    ['rest face', 'fiesta', null, 5000], 
+    ['butterfly', 'fuck', null, 0], 
+    ];
 
-    document.querySelector(imgClass).style.top = `${bodyIndex * unite}px`;
-}
+async function spriteSceneDelay(sceneData, instructionNumber = 0) {
+    const sceneInstruction = sceneData[instructionNumber];
+    const [faceInstruction, limbsInstruction, backgroundInstruction, timeInstruction] =  sceneInstruction;
 
-function changeFace(emotion){
-    
-  changeBodypart(EMOTIONS,emotion,".imgFace")
+    faceMotion(faceInstruction); 
+    limbsMotion(limbsInstruction);
+    if (backgroundInstruction) {
+        movetoRoom(backgroundInstruction);
+    } 
+    await awaitDelay(timeInstruction)
+    if (instructionNumber >= sceneData.length - 1) {
+        return; 
+    }
+    spriteSceneDelay(sceneData, instructionNumber + 1); 
+};
 
-}
+window.currentRoom = new Sprite(
+    [
+        "living-room",
+        "gym",
+        "dressing",
+        "library",
+        "aquarium",
+        "pet",
+        "vending",
+        "closed",
+        "transition",
+    ],
+    ".currentimgBg"
+);
 
-function changeLimbs(movement){
-   changeBodypart(LIMBS,movement,".imgLimbs")
-}
+window.transitionRoom = window.currentRoom.clone(".transitionimgBg");
+window.nextRoom = window.currentRoom.clone(".newroomimgBg");
 
-const CHEST =[
-    "basic", 
-    "puffer",
-    "bra",
-    "military",
-    "sport",
-    "pattern",
-    "party",
-    "classy",
-    "butterfly",
-]
+function movetoRoom(area) {
+    nextRoom.changeRoom(area);
+    const addtransitionClass = document.querySelector(".currentRoom");
+    addtransitionClass.classList.add("movedBackground");
+};
 
-function changeChest(outfit){
-    let chestIndex = CHEST.indexOf(outfit);
-    document.querySelector(".imgChest").style.left=`${chestIndex * -230 +"px"}`
-}
+window.limbsSprite = new AnimatedSprite( 
+    {
+        walking: [700, 700],
+        sit: [100],
+        neutral: [100],
+        typing: [800, 300, 500],
+        sport: [600, 900, 600, 900],
+        dance: [600, 900, 600, 1200],
+        fuck: [600, 1500,],
+        fiesta: [600, 500, 500, 600],
+        kill: [600, 500, 500, 600]
+    }, 
+    ".imgLimbs"
+);
 
-/*
-    function animation
-    il faut passer d'une image a droite a une autre meme principe que change face
-    selectionner l'emotion
-    premiere image s execute 
-    timeout s execute
-    il faut stocker l information pour incrementer la position
-    question de boucle ou des que ca atteint un certain il faut recommencer du debut
+window.faceSprite = new AnimatedSprite(
+    {
+        "rest face": [1000, 200],
+        angry: [500, 500],
+        playful : [1000, 200, 400, 400, 400],
+        reading: [1000, 200, 100, 900],
+        sleeping: [500, 500, 500, 500],
+        bewildered: [700, 700, 700],
+        bored: [1000, 700],
+        butterfly:[1200, 300, 300, 300, 300, 4300],
+        shocked: [500, 500],
+        sport:[800, 500, 300, 300, 800],
+        crying: [1200, 300, 300, 300, 300, 300],
+        "mental effort": [ 1200, 300, 300, 300, 300]
+    },
+    ".imgFace"
+);
 
-    selection du visage 
+window.chestSprite = new Sprite(
+    [
+        "basic", 
+        "puffer",
+        "bra",
+        "military",
+        "hoddie",
+        "party",
+        "swimming top",
+        "crop top",
+        "flanel",
+    ],
+    ".imgChest"
+);
 
-*/ 
+window.faceSprite.addButtons();
 
-let initFrame =0
-
-function repeatfaceMotion(emotion){
-    
-    document.querySelector(".imgFace").style.left= initFrame * -230 +"px"
-    
-    setTimeout(() => {
-        
-        if( initFrame >= EMOTIONS[emotion].length -1){
-            initFrame = 0
-        } else {
-            initFrame++
-        }
-
-        repeatfaceMotion(emotion) 
-
-    }, EMOTIONS[emotion][initFrame]);
-
-    
-
-}
-
-function faceMotion(emotion){
-    changeFace(emotion)
-    repeatfaceMotion(emotion);
-
-    
-}
