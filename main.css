@@ -17,7 +17,7 @@
     --sprite-size: 32;
 }
 
-body{
+body {
     margin : 0; 
     display: flex;
     flex-direction: column;
@@ -26,161 +26,161 @@ body{
     background-image: url("Frame\ 1.png");
     background-size: 100%;
     background-repeat: no-repeat;
-}
+};
 
-header, footer{
+header, footer {
     display: flex;
     flex-basis:100%;
     justify-content: center;
     flex-grow: 1;
-}
+};
 
-header{
+header {
     background-color: #434370;
-}
+};
 
-.boxLogo{
+.boxLogo {
     display: flex;
     flex-direction: column;
     justify-content: center;
     position:relative;
-}
+};
 
-.logo{
+.logo {
     z-index : 0;
-}
+};
 
-.rightbubbleBox, .leftbubbleBox{
+.rightbubbleBox, .leftbubbleBox {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     position: relative ;
-}
+};
 
-.leftbubbleBox{
+.leftbubbleBox {
     justify-content: flex-start;
-}
+};
 
-.mainBubble{
+.mainBubble {
     width: max-content;
     position: absolute;
     bottom:0px;
-}
+};
 
-.layeredBubble{
+.layeredBubble {
     position: absolute;
-    top : -17px;
-}
+    top: -17px;
+};
 
-main{
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+};
 
-.screen{
+.screen {
     display:flex;
     height:calc(1px * var(--screen-size));
     width: calc(1px * var(--screen-size));
     overflow: hidden;
     position:relative;
-}
+};
 
 .currentRoom {
     overflow: hidden;
     flex-shrink:0;
     width:100%;
     z-index: auto;
-}
+};
 
 @keyframes animationfromleft {
-    to{
+    to {
         margin-left: calc( 229.99px*-2);
     }
    
 }
-.movedBackground{
-    animation : animationfromleft 3s steps(4);
+.movedBackground {
+    animation: animationfromleft 3s steps(4);
     animation-fill-mode: forwards;
-}
-
+};
 
 .transitionRoom, .newRoom {
     overflow: hidden;
-    flex-shrink:0;
-    width:100%;
-}
+    flex-shrink: 0;
+    width: 100%;
+};
 
-.borderButton{
+.borderButton {
     border-image-source: url("menu-button.png");
-}
+};
 
-.currentimgBg,.transitionimgBg, .newroomimgBg{
+.currentimgBg, .transitionimgBg, .newroomimgBg{
     image-rendering: pixelated;
     transform: scale(calc(var(--screen-size) / var(--sprite-size)));
-    position:absolute;
+    position: absolute;
     transform-origin: top left;
-    flex-shrink:0;
-}
+    flex-shrink: 0;
+};
 
 
-.chestWrapper,.limbsWrapper {
-    top:42px;
-}
+.chestWrapper, .limbsWrapper {
+    top: 42px;
+};
 
-.imgLimbs{
+.imgLimbs {
     position: relative;
     transform: scale(calc(var(--screen-size) / var(--sprite-size)));
     transform-origin: top left;
-}
+};
 
-.imgChest{
+.imgChest {
     height: 100%;
-    position:relative;
-}
+    position: relative;
+};
 
-.overallWrapper{
-    height:calc(1px * var(--screen-size));
+.overallWrapper {
+    height: calc(1px * var(--screen-size));
     width: calc(1px * var(--screen-size));
     position: absolute;
-}
+};
 
-.spriteWrapper{
-    height:100%;
+.spriteWrapper {
+    height: 100%;
     width: 100%;
     position: absolute;
-    transform:scale(0.6);
+    transform: scale(0.6);
     overflow: hidden;
     image-rendering: pixelated;
-}
+};
 
-.imgFace{
+.imgFace {
     position: relative;
     transform-origin: top left;
-    transform: scale(calc(var(--screen-size) / var(--sprite-size)))
-}
-.arriere-plan{
-    width:50px;
-    height:50px;
-}   
+    transform: scale(calc(var(--screen-size) / var(--sprite-size)));
+}; 
 
-.faceButtons button, .limbButtons button, .chestButtons button{
-    border:solid white;
+.arriere-plan {
+    width: 50px;
+    height: 50px;
+};   
+
+.faceButtons button, .limbButtons button, .chestButtons button {
+    border: solid white;
     border-radius: 5px;
     background-color: white;
     padding: 1px;
     font-family: Monospace;
-}
+};
 
-.faceButtons,.limbButtons, .chestButtons{
+.faceButtons, .limbButtons, .chestButtons {
     display: flex;
     flex-direction: row;
     gap: 4px;
-}
+};
 
-.ButtonsBox{
+.ButtonsBox {
     display: flex;
     flex-direction: column;
     gap: 2px;
     padding:4px;
-}
+};
