@@ -1,4 +1,5 @@
 import AnimatedSprite from "./src/classes/AnimatedSprite";
+import { Button } from "./src/classes/modal";
 import Sprite from "./src/classes/Sprite";
 
 function awaitDelay(time) {
@@ -113,3 +114,4 @@ window.chestSprite = new Sprite(
 
 window.faceSprite.addButtons();
 
+window.stateButton=new Button("prout","statistic")

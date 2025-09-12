@@ -33,11 +33,12 @@ export default class Sprite {
             buttonsWrapper.appendChild(bttn);
         });
         spriteBttn.appendChild(buttonsWrapper);
+        buttonsWrapper.classList.add("faceButtons")
     }
 
     _changeSprite() {
         let spriteIndex = this.elements.indexOf(this.currentSprite);
-        document.querySelector(this.selector).style.left = `${spriteIndex * this.unit} px`;
+        document.querySelector(this.selector).style.left = `${spriteIndex * this.unit}px`;
     }
 };
 

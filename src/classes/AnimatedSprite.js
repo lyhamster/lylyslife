@@ -27,6 +27,6 @@ export default class AnimatedSprite extends Sprite {
 
     _changeSprite() {
         let spriteIndex = Object.keys(this.elements).indexOf(this.currentSprite);
-        document.querySelector(this.selector).style.top = `${spriteIndex*this.unit} px`;
+        document.querySelector(this.selector).style.top = `${spriteIndex*this.unit}px`;
     }
 };

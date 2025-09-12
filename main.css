@@ -23,60 +23,60 @@ body {
     flex-direction: column;
     height: 100vh;
     width: 100vw;
-    background-image: url("Frame\ 1.png");
+    background-image: url("assets/Frame\ 1.png");
     background-size: 100%;
     background-repeat: no-repeat;
-};
+}
 
 header, footer {
     display: flex;
     flex-basis:100%;
     justify-content: center;
     flex-grow: 1;
-};
+}
 
 header {
     background-color: #434370;
-};
+}
 
 .boxLogo {
     display: flex;
     flex-direction: column;
     justify-content: center;
     position:relative;
-};
+}
 
 .logo {
     z-index : 0;
-};
+}
 
 .rightbubbleBox, .leftbubbleBox {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     position: relative ;
-};
+}
 
 .leftbubbleBox {
     justify-content: flex-start;
-};
+}
 
 .mainBubble {
     width: max-content;
     position: absolute;
     bottom:0px;
-};
+}
 
 .layeredBubble {
     position: absolute;
     top: -17px;
-};
+}
 
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
-};
+}
 
 .screen {
     display:flex;
@@ -84,14 +84,14 @@ main {
     width: calc(1px * var(--screen-size));
     overflow: hidden;
     position:relative;
-};
+}
 
 .currentRoom {
     overflow: hidden;
     flex-shrink:0;
     width:100%;
     z-index: auto;
-};
+}
 
 @keyframes animationfromleft {
     to {
@@ -102,17 +102,17 @@ main {
 .movedBackground {
     animation: animationfromleft 3s steps(4);
     animation-fill-mode: forwards;
-};
+}
 
 .transitionRoom, .newRoom {
     overflow: hidden;
     flex-shrink: 0;
     width: 100%;
-};
+}
 
 .borderButton {
-    border-image-source: url("menu-button.png");
-};
+    border-image-source: url("assets/menu-button.png");
+}
 
 .currentimgBg, .transitionimgBg, .newroomimgBg{
     image-rendering: pixelated;
@@ -120,29 +120,28 @@ main {
     position: absolute;
     transform-origin: top left;
     flex-shrink: 0;
-};
-
+}
 
 .chestWrapper, .limbsWrapper {
     top: 42px;
-};
+}
 
 .imgLimbs {
     position: relative;
     transform: scale(calc(var(--screen-size) / var(--sprite-size)));
     transform-origin: top left;
-};
+}
 
 .imgChest {
     height: 100%;
     position: relative;
-};
+}
 
 .overallWrapper {
     height: calc(1px * var(--screen-size));
     width: calc(1px * var(--screen-size));
     position: absolute;
-};
+}
 
 .spriteWrapper {
     height: 100%;
@@ -151,36 +150,36 @@ main {
     transform: scale(0.6);
     overflow: hidden;
     image-rendering: pixelated;
-};
+}
 
 .imgFace {
     position: relative;
     transform-origin: top left;
     transform: scale(calc(var(--screen-size) / var(--sprite-size)));
-}; 
+}
 
 .arriere-plan {
     width: 50px;
     height: 50px;
-};   
+}
 
-.faceButtons button, .limbButtons button, .chestButtons button {
+.faceButtons button, .limbButtons button, .chestButtons button{
     border: solid white;
     border-radius: 5px;
     background-color: white;
     padding: 1px;
     font-family: Monospace;
-};
+}
 
 .faceButtons, .limbButtons, .chestButtons {
     display: flex;
     flex-direction: row;
     gap: 4px;
-};
+}
 
 .ButtonsBox {
     display: flex;
     flex-direction: column;
     gap: 2px;
     padding:4px;
-};
+}
