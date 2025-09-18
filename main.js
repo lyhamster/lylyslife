@@ -1,5 +1,5 @@
 import AnimatedSprite from "./src/classes/AnimatedSprite";
-import { Button } from "./src/classes/modal";
+import { Button } from "./src/classes/Modal";
 import Sprite from "./src/classes/Sprite";
 
 function awaitDelay(time) {

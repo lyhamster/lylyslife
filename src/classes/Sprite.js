@@ -5,10 +5,12 @@ export default class Sprite {
     unit = -230;
     currentSprite;
     divButton=".ButtonsBox";
+    defaultSprite
 
-    constructor(elements, selector) {
-        this.selector = selector;
+    constructor(elements, selector, defaultSprite) {
         this.elements = elements;
+        this.selector = selector;
+        this.defaultSprite = defaultSprite;
     }
 
     setAction(state) {
@@ -37,8 +39,10 @@ export default class Sprite {
     }
 
     _changeSprite() {
-        let spriteIndex = this.elements.indexOf(this.currentSprite);
+        const spriteIndex = this.elements.indexOf(this.currentSprite);
         document.querySelector(this.selector).style.left = `${spriteIndex * this.unit}px`;
     }
+
+
 };
 

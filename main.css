@@ -82,6 +82,7 @@ main {
     display:flex;
     height:calc(1px * var(--screen-size));
     width: calc(1px * var(--screen-size));
+    image-rendering: pixelated;
     overflow: hidden;
     position:relative;
 }
@@ -114,12 +115,20 @@ main {
     border-image-source: url("assets/menu-button.png");
 }
 
-.currentimgBg, .transitionimgBg, .newroomimgBg{
+.currentimgBg, .transitionimgBg, .newroomimgBg {
     image-rendering: pixelated;
     transform: scale(calc(var(--screen-size) / var(--sprite-size)));
     position: absolute;
     transform-origin: top left;
     flex-shrink: 0;
+}
+
+.modalStyle {
+    position: absolute;
+    background-image: url("/assets/modal-bg.png");
+    background-size: 100%;
+    height: 100%;
+    width: 100%;
 }
 
 .chestWrapper, .limbsWrapper {

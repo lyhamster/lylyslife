@@ -4,33 +4,28 @@ class Modal {
 
     selectorElement = ".screen";
     screen;
-    modalBox;
-    imgElement 
-    
+    modalBox; 
+  
     open() {
         this.screen = document.querySelector(this.selectorElement);
-
         this.modalBox= document.createElement("div");
-        this.imgElement = document.createElement("img"); 
-
-        this.modalBox.classList.add("modalBox");
-        this.imgElement.classList.add("modalBgimg");
-
+        this.modalBox.classList.add("modalStyle");
         this.screen.appendChild(this.modalBox);
-        this.modalBox.appendChild(this.imgElement);
+        this.modalBox.style.visibility="visible";
 
-        this.imgElement.src = "assets/modal-bg.png";
-        this.imgElement.style.visibility="visible"
+        this.modalBox.appendChild(this.render())
+        console.log(this.screen)
     }
 
-    close() {
+    close () {
         this.modalBox.remove();   
-        this.imgElement.style.visibility = "hidden";
+        this.modalBox.style.visibility = "hidden";
+    }
+
+    render() {
+
     }
 }  
-
-window.modal=new Modal()
-
 
 export class Button {
     name;
@@ -43,13 +38,13 @@ export class Button {
         this.action = action;
     }
 
-    set() {
+    getElement() {
         let bttn = document.createElement("button");    
         let imgIcon = document.createElement("img");
         imgIcon.classList.add(this.name);
         bttn.appendChild(imgIcon);
         imgIcon.src="assets/icons.png"
-
+  
         const iconSprite = new Sprite(
             [   
                 "statistic", 
@@ -67,16 +62,22 @@ export class Button {
                 "dev", 
                 "korean","dance", 
                 "pet", 
-                "dress"
+                "dress",
             ]
-            , `.${this.name}`)
+            , `.${this.name}`, this.icon)
 
-        iconSprite.setAction(this.icon)
-        
         bttn.addEventListener("click", () => {
             this.action()
         })
         
         return bttn;
+    }
+}
+
+class MenuModal extends Modal {
+
+    render() {
+        const bttn = new Button("statistic","statistic")
+        return bttn.getElement()                                                                     
     }
 }
