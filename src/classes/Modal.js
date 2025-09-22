@@ -2,7 +2,7 @@ import Sprite from "./Sprite";
 
 class Modal {
 
-    selectorElement = ".screen";
+    selectorElement = ".screenWrapper";
     screen;
     modalBox; 
   
@@ -40,11 +40,14 @@ export class Button {
     }
 
     getElement() {
-        let bttn = document.createElement("button"); 
-        bttn.classList.add("iconSpriteButton")   
-        let imgIcon = document.createElement("img");
+        const bttn = document.createElement("button"); 
+        const imgWrapper = document.createElement("div")
+        bttn.classList.add("iconSpriteButton");   
+        const imgIcon = document.createElement("img");
         imgIcon.classList.add(this.name, "iconSpriteImg");
-        bttn.appendChild(imgIcon);
+        imgWrapper.classList.add("imgWrapper")
+        bttn.appendChild(imgWrapper);
+        imgWrapper.appendChild(imgIcon);
         imgIcon.src="assets/icons.png"
     
         const iconSprite = new Sprite(
@@ -59,7 +62,7 @@ export class Button {
                 "photo", 
                 "return", 
                 "off", 
-                "menu", 
+                "menu",
                 "sport", 
                 "read", 
                 "dev", 
@@ -68,7 +71,7 @@ export class Button {
                 "pet", 
                 "dress",
             ]
-            , `.${this.name}`, this.icon, imgIcon,-50)
+            , `.${this.name}`, this.icon, imgIcon,-40)
 
         bttn.addEventListener("click", () => {
             this.action()
@@ -101,6 +104,7 @@ class MenuModal extends Modal {
                 "dress",
             ];
         const modalBttnWrapper = document.createElement("div");
+        modalBttnWrapper.classList.add ("iconSpriteWrapper")
         modalBttn.forEach((modalBttnfeat) => {
             const bttnInstance = new Button(modalBttnfeat,modalBttnfeat);
             modalBttnWrapper.appendChild(bttnInstance.getElement());

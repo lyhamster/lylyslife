@@ -84,7 +84,19 @@ main {
     width: calc(1px * var(--screen-size));
     image-rendering: pixelated;
     overflow: hidden;
-    position:relative;
+    position: relative;
+    border-image: url("/assets/menu-button.png") 30% / 10px;
+    padding: 10px;
+    border-image-width: 23px;
+    background-color: #442652;
+    border-radius: 13px;
+}
+
+.screenWrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    width: 230px;
+    position: relative;
 }
 
 .currentRoom {
@@ -190,14 +202,25 @@ main {
 }
 
 .iconSpriteButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 50px;
     width: 50px;
     overflow: hidden;
-    margin: 10px;
     padding-inline: 0;
     padding-block: 0;
     border: 0;
     border-image: url("/assets/menu-button.png") 60% / 100%;
+    /* background-color: #F58BFF;
+    border-radius: 10px; */
+    
+}
+
+.imgWrapper {
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
 }
 
 .iconSpriteImg {
@@ -205,3 +228,21 @@ main {
     position: relative;
 } 
 
+.iconSpriteWrapper {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 3px;
+    margin: 4px;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    height: 100%;
+}
+
+.iconSpriteWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.selected {
+    background-color:#F58BFF;
+}
