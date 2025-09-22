@@ -1,5 +1,6 @@
-import AnimatedSprite from "./classAnimatedSprite";
-import Sprite from "./classSprite";
+import AnimatedSprite from "./src/classes/AnimatedSprite";
+import { Button } from "./src/classes/Modal";
+import Sprite from "./src/classes/Sprite";
 
 function awaitDelay(time) {
     return new Promise(
@@ -77,7 +78,7 @@ window.limbsSprite = new AnimatedSprite(
     }, 
     ".imgLimbs"
 );
-
+        
 window.faceSprite = new AnimatedSprite(
     {
         "rest face": [1000, 200],
@@ -113,3 +114,4 @@ window.chestSprite = new Sprite(
 
 window.faceSprite.addButtons();
 
+window.stateButton=new Button("prout","statistic")
