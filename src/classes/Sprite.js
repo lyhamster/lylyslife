@@ -2,15 +2,21 @@
 export default class Sprite {
     elements;
     selector;
-    unit = -230;
+    unit;
     currentSprite;
     divButton=".ButtonsBox";
-    defaultSprite
+    element 
 
-    constructor(elements, selector, defaultSprite) {
+    constructor(elements, selector, defaultSprite,element,unit = -230) {
         this.elements = elements;
         this.selector = selector;
-        this.defaultSprite = defaultSprite;
+        this.element = element;
+        this.unit = unit;
+
+        if (defaultSprite) {
+            this.setAction(defaultSprite)
+        };
+        
     }
 
     setAction(state) {
@@ -40,9 +46,8 @@ export default class Sprite {
 
     _changeSprite() {
         const spriteIndex = this.elements.indexOf(this.currentSprite);
-        document.querySelector(this.selector).style.left = `${spriteIndex * this.unit}px`;
+        (this.element || document.querySelector(this.selector)).style.left = `${spriteIndex * this.unit}px`;
     }
-
 
 };
 

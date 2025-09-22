@@ -17,7 +17,7 @@ class Modal {
         console.log(this.screen)
     }
 
-    close () {
+    close() {
         this.modalBox.remove();   
         this.modalBox.style.visibility = "hidden";
     }
@@ -32,6 +32,7 @@ export class Button {
     icon;
     action;
 
+
     constructor(name,icon,action,){
         this.name = name;
         this.icon = icon;
@@ -39,12 +40,13 @@ export class Button {
     }
 
     getElement() {
-        let bttn = document.createElement("button");    
+        let bttn = document.createElement("button"); 
+        bttn.classList.add("iconSpriteButton")   
         let imgIcon = document.createElement("img");
-        imgIcon.classList.add(this.name);
+        imgIcon.classList.add(this.name, "iconSpriteImg");
         bttn.appendChild(imgIcon);
         imgIcon.src="assets/icons.png"
-  
+    
         const iconSprite = new Sprite(
             [   
                 "statistic", 
@@ -53,6 +55,7 @@ export class Button {
                 "vinyl", 
                 "food", 
                 "sleep", 
+                "caca",
                 "photo", 
                 "return", 
                 "off", 
@@ -60,11 +63,12 @@ export class Button {
                 "sport", 
                 "read", 
                 "dev", 
-                "korean","dance", 
+                "korean",
+                "dance", 
                 "pet", 
                 "dress",
             ]
-            , `.${this.name}`, this.icon)
+            , `.${this.name}`, this.icon, imgIcon,-50)
 
         bttn.addEventListener("click", () => {
             this.action()
@@ -75,9 +79,35 @@ export class Button {
 }
 
 class MenuModal extends Modal {
-
     render() {
-        const bttn = new Button("statistic","statistic")
-        return bttn.getElement()                                                                     
+        const modalBttn = [   
+                "statistic", 
+                "shop", 
+                "gameboy", 
+                "vinyl", 
+                "food", 
+                "sleep", 
+                "caca",
+                "photo", 
+                "return", 
+                "off", 
+                "menu", 
+                "sport", 
+                "read", 
+                "dev", 
+                "korean",
+                "dance", 
+                "pet", 
+                "dress",
+            ];
+        const modalBttnWrapper = document.createElement("div");
+        modalBttn.forEach((modalBttnfeat) => {
+            const bttnInstance = new Button(modalBttnfeat,modalBttnfeat);
+            modalBttnWrapper.appendChild(bttnInstance.getElement());
+        })
+        return modalBttnWrapper;                                                               
     }
 }
+
+window.menuModal = new MenuModal();
+window.menuModal.open();

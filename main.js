@@ -78,7 +78,7 @@ window.limbsSprite = new AnimatedSprite(
     }, 
     ".imgLimbs"
 );
-
+        
 window.faceSprite = new AnimatedSprite(
     {
         "rest face": [1000, 200],
