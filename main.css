@@ -30,6 +30,8 @@ body {
 
 header, footer {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     flex-basis:100%;
     justify-content: center;
     flex-grow: 1;
@@ -245,4 +247,19 @@ main {
 
 .selected {
     background-color:#F58BFF;
+}
+
+.gameButton {
+    display: flex;
+    image-rendering: pixelated;
+}
+
+.gameBttnWrapper {
+    height: 64px;
+    width: 64px;
+    overflow: hidden; 
+}
+.gameBttnImg {
+    height: 100%;
+    position: relative;
 }

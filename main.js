@@ -1,6 +1,8 @@
 import AnimatedSprite from "./src/classes/AnimatedSprite";
 import { Button } from "./src/classes/Modal";
 import Sprite from "./src/classes/Sprite";
+import gameButtonsInst from "./src/managers/GameButtonsManager";
+
 
 function awaitDelay(time) {
     return new Promise(
@@ -112,6 +114,14 @@ window.chestSprite = new Sprite(
     ".imgChest"
 );
 
-window.faceSprite.addButtons();
+document.querySelector(".gameBttnWrapper").addEventListener("click", () => {
+    gameButtonsInst.firstBttn?.()
+});
 
-window.stateButton=new Button("prout","statistic")
+const spriteBttn = new Sprite(
+    ["on","off",],
+    ".firstGameBttnWrapper", 
+    null,
+    null,
+    -64
+)

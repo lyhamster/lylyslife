@@ -16,7 +16,6 @@ export default class Sprite {
         if (defaultSprite) {
             this.setAction(defaultSprite)
         };
-        
     }
 
     setAction(state) {
@@ -41,13 +40,12 @@ export default class Sprite {
             buttonsWrapper.appendChild(bttn);
         });
         spriteBttn.appendChild(buttonsWrapper);
-        buttonsWrapper.classList.add("faceButtons")
+        buttonsWrapper.classList.add("faceButtons");
     }
 
     _changeSprite() {
         const spriteIndex = this.elements.indexOf(this.currentSprite);
         (this.element || document.querySelector(this.selector)).style.left = `${spriteIndex * this.unit}px`;
     }
-
 };
 
