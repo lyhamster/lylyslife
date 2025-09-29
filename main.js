@@ -114,9 +114,23 @@ window.chestSprite = new Sprite(
     ".imgChest"
 );
 
-document.querySelector(".gameBttnWrapper").addEventListener("click", () => {
-    gameButtonsInst.firstBttn?.()
+document.querySelector(".firstGameBttn").addEventListener("click", () => {
+    gameButtonsInst.firstBttn?.();
 });
+
+document.querySelector(".secondGameBttn").addEventListener("click", () => {
+    gameButtonsInst.secondBttn?.();
+});
+
+gameButtonsInst.firstBttn = () => {
+    window.menuModal.open();
+    console.log("prout")
+}
+
+gameButtonsInst.secondBttn = () => {
+    window.menuModal.open();
+    console.log("dumb")
+}
 
 const spriteBttn = new Sprite(
     ["on","off",],
@@ -125,3 +139,7 @@ const spriteBttn = new Sprite(
     null,
     -64
 )
+
+
+
+

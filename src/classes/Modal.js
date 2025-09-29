@@ -85,9 +85,9 @@ export class Button {
 }
 
 class MenuModal extends Modal {
-    render() {
-        const modalBttn = [
-            {"icon": "statistic", "name": "statisque", 'action': () => {window.statsModal.open()},},
+
+    modalBttn = [
+            {"icon": "statistic", "name": "statistique", 'action': () => {window.statsModal.open()},},
             {"icon": "shop", "name": "boutique", 'action': () => {},},
             {"icon": "gameboy", "name": "jeu", 'action': () => {},},
             {"icon": "vinyl", "name": "musique", 'action': () => {},},
@@ -105,31 +105,49 @@ class MenuModal extends Modal {
             {"icon": "dance", "name": "danser", 'action': () => {},},
             {"icon": "pet", "name": "animal", 'action': () => {},},
             {"icon": "dress", "name": "robe", 'action': () => {},},
-        ]
- 
+        ];
+    selectedBttn = 0;
+
+    render() {
         const modalBttnWrapper = document.createElement("div");
         modalBttnWrapper.classList.add ("iconSpriteWrapper");
-        
-        modalBttn.forEach((modalBttnObj) => {
+        this.modalBttn.forEach((modalBttnObj) => {
             const bttnInstance = new Button( modalBttnObj.name, modalBttnObj.icon, modalBttnObj.action);
             modalBttnWrapper.appendChild(bttnInstance.getElement());
         })
         return modalBttnWrapper;         
     }
 
-    onOpen() {
-        gameButtonsInst.firstBttn = () => this.close();
-       console.log("ouverture de menu modal")
+    changeSelectedBttn(newNumber) {
+        let finalNumber 
 
+        if (this.selectedBttn < 0 ) {
+            document.querySelector(".boutique").classList.add("selected")
+        } else if (this.selectedBttn >18){
+            document.querySelector(".statistique").classList.add("selected")
+        } 
+        document.querySelector(`.${this.modalBttn[this.selectedBttn].name}`).classList.remove("selected");
+        this.selectedBttn = newNumber;
+        if (this.selectedBttn <= this.modalBttn.length-1) {
+            document.querySelector(`.${this.modalBttn[newNumber].name}`).classList.add("selected")
+        }
+    }
+
+    onOpen() { 
+        gameButtonsInst.firstBttn = () => {
+            console.log("on open first button");
+            window.menuModal.changeSelectedBttn(this.selectedBttn - 1);
+        }
+         gameButtonsInst.secondBttn = () => {
+            window.menuModal.changeSelectedBttn(this.selectedBttn + 1);
+        }
     }
 }
 
 window.menuModal = new MenuModal();
-window.menuModal.open();
 
 class StatsModal extends Modal {
         onOpen() {
-       console.log("ouverture de stats modal")
     }
 }
 
