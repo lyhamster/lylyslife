@@ -118,18 +118,17 @@ class MenuModal extends Modal {
         return modalBttnWrapper;         
     }
 
-    changeSelectedBttn(newNumber) {
-        let finalNumber 
-
-        if (this.selectedBttn < 0 ) {
-            document.querySelector(".boutique").classList.add("selected")
-        } else if (this.selectedBttn >18){
-            document.querySelector(".statistique").classList.add("selected")
+    changeSelectedBttn(newIndex) {
+        
+        if (newIndex < 0 ) {
+            newIndex = 17;
+        } else if (newIndex > this.modalBttn.length - 1) {
+            newIndex = 0;
         } 
         document.querySelector(`.${this.modalBttn[this.selectedBttn].name}`).classList.remove("selected");
-        this.selectedBttn = newNumber;
+        this.selectedBttn = newIndex;
         if (this.selectedBttn <= this.modalBttn.length-1) {
-            document.querySelector(`.${this.modalBttn[newNumber].name}`).classList.add("selected")
+            document.querySelector(`.${this.modalBttn[newIndex].name}`).classList.add("selected")
         }
     }
 
