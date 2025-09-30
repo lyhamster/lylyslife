@@ -133,12 +133,12 @@ class MenuModal extends Modal {
     }
 
     onOpen() { 
+        this.changeSelectedBttn(this.selectedBttn)       
         gameButtonsInst.firstBttn = () => {
-            console.log("on open first button");
-            window.menuModal.changeSelectedBttn(this.selectedBttn - 1);
+            this.changeSelectedBttn(this.selectedBttn - 1)
         }
          gameButtonsInst.secondBttn = () => {
-            window.menuModal.changeSelectedBttn(this.selectedBttn + 1);
+            this.changeSelectedBttn(this.selectedBttn + 1)
         }
     }
 }
