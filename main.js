@@ -1,5 +1,8 @@
-import AnimatedSprite from "./classAnimatedSprite";
-import Sprite from "./classSprite";
+import AnimatedSprite from "./src/classes/AnimatedSprite";
+import { Button } from "./src/classes/Modal";
+import Sprite from "./src/classes/Sprite";
+import gameButtonsInst from "./src/managers/GameButtonsManager";
+
 
 function awaitDelay(time) {
     return new Promise(
@@ -77,7 +80,7 @@ window.limbsSprite = new AnimatedSprite(
     }, 
     ".imgLimbs"
 );
-
+        
 window.faceSprite = new AnimatedSprite(
     {
         "rest face": [1000, 200],
@@ -111,5 +114,32 @@ window.chestSprite = new Sprite(
     ".imgChest"
 );
 
-window.faceSprite.addButtons();
+document.querySelector(".firstGameBttn").addEventListener("click", () => {
+    gameButtonsInst.firstBttn?.();
+});
+
+document.querySelector(".secondGameBttn").addEventListener("click", () => {
+    gameButtonsInst.secondBttn?.();
+});
+
+gameButtonsInst.firstBttn = () => {
+    window.menuModal.open();
+    console.log("prout")
+}
+
+gameButtonsInst.secondBttn = () => {
+    window.menuModal.open();
+    console.log("dumb")
+}
+
+const spriteBttn = new Sprite(
+    ["on","off",],
+    ".firstGameBttnWrapper", 
+    null,
+    null,
+    -64
+)
+
+
+
 
