@@ -4,38 +4,48 @@
         <meta charset="utf-8">
         <title>Lyly's life</title>
         <link href="main.css" rel="stylesheet">
-        <script src="main.js"> </script>
+        <script src="main.js" type="module" defer></script>
     </head>
     <body>
         <header>
             <div class="boxLogo">
                 <div class="rightbubbleBox">
-                    <img class="layeredBubble"src="bubble.png">
+                    <img class="layeredBubble" src="bubble.png">
                 </div>
-                <img class="logo" src="logo.png">
+                <img class= "logo" src="logo.png">
                 <div class="leftbubbleBox">
                     <img class="mainBubble" src="bubble.png">
                 </div>
             </div>
         </header>
         <main>
-            <div></div>
-            <div class="screen">
-                <img class="imgBg" src="bg.png">
-                    <div class="overallWrapper">
-                        <div class="spriteWrapper chestWrapper">
-                            <img class="imgChest" src="chest (1).png">
-                        </div>
-                        <div class="spriteWrapper">
-                            <img class="imgFace" src="face.png" id="imgFace">
-                        </div>
-                        <div class="spriteWrapper limbsWrapper">
-                            <img class="imgLimbs" src="limbs.png">
-                        </div>
+            <div>
+            <div clas="screen">
+                <div class="currentRoom">
+                    <img class="currentimgBg" src="bgUpdated.png">
+                </div>
+                <div class="transitionRoom">
+                    <img class="transitionimgBg" src="bgUpdated.png">
+                </div>
+                <div class="newRoom">
+                    <img class="newroomimgBg" src="bgUpdated.png">
+                </div>
+                <div class="overallWrapper">
+                    <div class="spriteWrapper chestWrapper">
+                        <img class="imgChest" src="chest (1).png">
                     </div>
+                    <div class="spriteWrapper">
+                        <img class="imgFace" src="face.png" id="imgFace">
+                    </div>
+                    <div class="spriteWrapper limbsWrapper">
+                        <img class="imgLimbs" src="limbs.png">
+                    </div>
+                </div>
             </div>
         </main>
         <footer>
+            <div class="ButtonsBox">
+            </div>
         </footer>
     </body>
 </html>
